@@ -11,8 +11,8 @@
 
 I love my Moonlander, but one downside of a split keyboard is that it's no longer practical to type/use the whole keyboard with one hand while using a mouse, and going back and forth from my trackball to the right half of my keyboard was bumming me out.
 
-![PXL_20260125_225050999~2.jpg][./assets/PXL_20260125_225050999~2.jpg]
-![PXL_20260125_225117174.jpg][./assets/PXL_20260125_225117174.jpg]
+![PXL_20260125_225050999~2.jpg](./assets/PXL_20260125_225050999~2.jpg)
+![PXL_20260125_225117174.jpg](./assets/PXL_20260125_225117174.jpg)
 
 Enter my slant on the ploopy Nano BTU mod.  Fair warning, the ZSA integration is specifically for linux and optimised for Fedora/centOS/RHEL/systemd, though it should be deployable anywhere.
 
@@ -58,7 +58,7 @@ Enter my slant on the ploopy Nano BTU mod.  Fair warning, the ZSA integration is
 
 * You probably already re-flashed the Nano to accommodate the change in rotation.  Other than that, I think you're good, though I have been experimenting with the [[https://github.com/pandrr/wiggleball|wiggleball]].  I'm not sure I can recommend it though.
 * [[https://configure.zsa.io/moonlander/layouts/RRxy4/latest/6|This is my current oryx layout]], there's nothing really revolutionary there, the only thing to note is my use of Mouse Button 8 on my mouse layer.  The lock layer key in oryx doesn't work as intended with this solution, so instead I've created a shortcut in my window manager (hyprland) which runs the 'lockLayer' function in nanoKontroll when 'Mouse Button 8' is pressed
-  `bind = , mouse:279, exec, bash -c "/home/<username>/bin/nanoKontroll lockLayer"`![snapshot_2026-01-25_18-36-58.png][./assets/snapshot_2026-01-25_18-36-58.png]
+  `bind = , mouse:279, exec, bash -c "/home/<username>/bin/nanoKontroll lockLayer"`![snapshot_2026-01-25_18-36-58.png](./assets/snapshot_2026-01-25_18-36-58.png)
 ## Acknowledgements
 This is an adaptation of other work, particular thanks goes to -
 	* [Papa-o-ROM] (https://www.printables.com/@PapaoROM_885955) for getting the ball rolling on Moonlander trackballs

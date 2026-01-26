@@ -64,21 +64,21 @@ Enter my slant on the ploopy Nano BTU mod.  Fair warning, the ZSA integration is
 * [This is my current oryx layout](https://configure.zsa.io/moonlander/layouts/RRxy4/latest/6), there's nothing really revolutionary there, the only thing to note is my use of Mouse Button 8 on my mouse layer.  The lock layer key in oryx doesn't work as intended with this solution, so instead I've created a shortcut in my window manager (hyprland) which runs the 'lockLayer' function in nanoKontroll when 'Mouse Button 8' is pressed
   `bind = , mouse:279, exec, bash -c "/home/<username>/bin/nanoKontroll lockLayer"`![snapshot_2026-01-25_18-36-58.png](./assets/snapshot_2026-01-25_18-36-58.png)
 
-## Acknowledgements
+## acknowledgements
 
-This is an adaptation of other work, particular thanks goes to -
-	* [Papa-o-ROM](https://www.printables.com/@PapaoROM_885955) for getting the ball rolling on Moonlander trackballs
-	* [Shane Deiley](https://www.printables.com/model/520579-ploopy-nano-btu-mod-with-zsa-moonlander-right-thum) Shane took a couple models and spun them together, making the template I iterated on, some of those sources are as follows
-	* [nov1n](https://www.printables.com/model/232829-moonlander-thumb-pad-blanks) nov1n made a cool trackball, but the interface between the thumb cluster and the main board is what was sourced
-	* [nivekmai](https://www.printables.com/model/776160-moonrover-mk2) and [git](https://github.com/nivekmai/qmk_firmware/tree/i2c-arduino-trackball) Similarly, nivekmai made some trackballs, but it was the housing they made that was sourced here.
-	* [George Bryant](https://github.com/gbrnt) Last but certainly not least, George Bryant made the original BTU mod for the ploopy Nano without which this would never have come together
-As well as a general thanks to the [ZSA](https://www.zsa.io/) and [ploopy](ploopy.co) teams for all the hardware, tools, support. Let me know if I missed someone!
+this is an adaptation of other work, particular thanks goes to -
+* [papa-o-rom](https://www.printables.com/@papaorom_885955) for getting the ball rolling on moonlander trackballs
+* [shane deiley](https://www.printables.com/model/520579-ploopy-nano-btu-mod-with-zsa-moonlander-right-thum) shane took a couple models and spun them together, making the template i iterated on, some of those sources are as follows
+* [nov1n](https://www.printables.com/model/232829-moonlander-thumb-pad-blanks) nov1n made a cool trackball, but the interface between the thumb cluster and the main board is what was sourced
+* [nivekmai](https://www.printables.com/model/776160-moonrover-mk2) and [git](https://github.com/nivekmai/qmk_firmware/tree/i2c-arduino-trackball) similarly, nivekmai made some trackballs, but it was the housing they made that was sourced here.
+* [george bryant](https://github.com/gbrnt) last but certainly not least, george bryant made the original btu mod for the ploopy nano without which this would never have come together
+as well as a general thanks to the [zsa](https://www.zsa.io/) and [ploopy](ploopy.co) teams for all the hardware, tools, support. let me know if i missed someone!
 
 ## Future State
 
 I'm pretty happy with this, but there are one or two things on my mind.
 
-    * No drag scroll kinda bums me out. Maybe I can implement it on the keyboard and take the trackball input?
-    * I didn't put in logic to determine what event# the trackball/pointing device is on because that info is packaged kinda poorly, but it should be doable
+* No drag scroll kinda bums me out. Maybe I can implement it on the keyboard and take the trackball input?
+* I didn't put in logic to determine what event# the trackball/pointing device is on because that info is packaged kinda poorly, but it should be doable
 
 Let me know if you have a hot take/suggestions!

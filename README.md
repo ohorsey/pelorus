@@ -61,10 +61,10 @@ Enter my slant on the ploopy Nano BTU mod.  Fair warning, the ZSA integration is
   `bind = , mouse:279, exec, bash -c "/home/<username>/bin/nanoKontroll lockLayer"`![snapshot_2026-01-25_18-36-58.png](./assets/snapshot_2026-01-25_18-36-58.png)
 ## Acknowledgements
 This is an adaptation of other work, particular thanks goes to -
-	* [Papa-o-ROM] (https://www.printables.com/@PapaoROM_885955) for getting the ball rolling on Moonlander trackballs
-	* [Shane Deiley] (https://www.printables.com/model/520579-ploopy-nano-btu-mod-with-zsa-moonlander-right-thum) Shane took a couple models and spun them together, making the template I iterated on, some of those sources are as follows
-		* [nov1n] (https://www.printables.com/model/232829-moonlander-thumb-pad-blanks) nov1n made a cool trackball, but the interface between the thumb cluster and the main board is what was sourced
-		* [nivekmai] (https://www.printables.com/model/776160-moonrover-mk2) and [git] (https://github.com/nivekmai/qmk_firmware/tree/i2c-arduino-trackball) Similarly, nivekmai made some trackballs, but it was the housing they made that was sourced here.
-		* [George Bryant] (https://github.com/gbrnt) Last but certainly not least, George Bryant made the original BTU mod for the ploopy Nano without which this would never have come together
+	* [Papa-o-ROM](https://www.printables.com/@PapaoROM_885955) for getting the ball rolling on Moonlander trackballs
+	* [Shane Deiley](https://www.printables.com/model/520579-ploopy-nano-btu-mod-with-zsa-moonlander-right-thum) Shane took a couple models and spun them together, making the template I iterated on, some of those sources are as follows
+		* [nov1n](https://www.printables.com/model/232829-moonlander-thumb-pad-blanks) nov1n made a cool trackball, but the interface between the thumb cluster and the main board is what was sourced
+		* [nivekmai](https://www.printables.com/model/776160-moonrover-mk2) and [git](https://github.com/nivekmai/qmk_firmware/tree/i2c-arduino-trackball) Similarly, nivekmai made some trackballs, but it was the housing they made that was sourced here.
+		* [George Bryant](https://github.com/gbrnt) Last but certainly not least, George Bryant made the original BTU mod for the ploopy Nano without which this would never have come together
 
-As well as a general thanks to the [[https://www.zsa.io/|ZSA]] and [[ploopy.co/|ploopy]] teams for all the hardware, tools, support. Let me know if I missed someone!
+As well as a general thanks to the [ZSA](https://www.zsa.io/) and [ploopy](ploopy.co) teams for all the hardware, tools, support. Let me know if I missed someone!

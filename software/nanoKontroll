@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# ~/bin/nanoKontroll
+# evtest on 22, the layer indexes on 34 and 36, and
+# the kontroll path on 34-37, 41, and 42 need to be updated to your env.
+
+lockLayer() {
+	[[ -f /tmp/layerLock ]] && rm /tmp/layerLock || touch /tmp/layerLock
+}
+
+[[ $1 == "lockLayer" ]] && lockLayer && exit	# We define and check for the
+												# lock function first
+[[ ! -f /tmp/lastTouch ]] && touch /tmp/lastTouch
+touch /tmp/lastTouch	# We're using a tmp file here and for the lock instead
+						# of variables to allow the background process and user
+						# alias/binds to communicate with the foreground proc.
+
+	# The trackball produces more events than we need, to maximize
+	# responsiveness of the layer switching we we run evtest seperately in a
+	# background process
+{
+	evtest /dev/input/event<deviceNumberHere> |
+	grep "time" |						 	# I ended up just using the mTime
+	cut -d " " -f 3 |						# of the file on ln. 25 instead of
+	sed 's/\.??????.*//g' |					# the string from evTest, so 15-17
+	while read -r MOVEMENT;					# could be cut for resource opt.
+	do
+		echo "$MOVEMENT" > /tmp/lastTouch
+	done
+} &
+
+while true; do
+	if [[ $(( $(date +%s%3N) - $(date -r /tmp/lastTouch +%s%3N) )) -lt 1500 ]] ; then
+		if [[ $(/home/<username>/bin/kontroll status | grep 'layer' | cut -f 3) -ne <mouseLayerHere> ]] ; then
+			CURRENTLAYER=$(/home/<username>/bin/kontroll status | grep 'layer' | cut -f 3)
+			/home/<username>/bin/kontroll set-layer --index <mouseLayerHere> 
+			/home/<username>/bin/kontroll set-rgb-all --color ffffff
+			while [[ $(( $(date +%s%3N) - $(date -r /tmp/lastTouch +%s%3N) )) -lt 1001 ]] || [[ -f /tmp/layerLock ]] ; do
+				sleep 0.01
+			done
+			/home/<username>/bin/kontroll set-layer --index $CURRENTLAYER
+			/home/<username>/bin/kontroll restore-rgb-leds
+			sleep 0.499	# This + the 0.01 on ln. 31 ensure the IF condition on ln. 25 is false when we exit the inner while loop
+		else
+			sleep 0.001
+		fi
+	else
+		sleep 0.005
+	fi
+done

@@ -50,7 +50,7 @@ Enter my slant on the ploopy Nano BTU mod.  Fair warning, the ZSA integration is
    Verify which group owns your trackball with `sudo ls -al /dev/input/` and assuming it's input run `sudo usermod -aG input <username>` with your username
 3. Download and [install kontroll](https://github.com/zsa/kontroll), preferably to ~/bin/kontroll
 4. Update the .service file and nanoKontroll for your environment per the comments in each file.
-5. place nanoKontroll in ~/bin and run `sudo chmod +x nanoKontroll`
+5. Place nanoKontroll in ~/bin and run `sudo chmod +x nanoKontroll`
 6. Place the .service file in ~/.config/systemd/user/ and run 
    ```
    systemctl --user daemon-reload
@@ -64,7 +64,7 @@ Enter my slant on the ploopy Nano BTU mod.  Fair warning, the ZSA integration is
 * [This is my current oryx layout](https://configure.zsa.io/moonlander/layouts/RRxy4/latest/6), there's nothing really revolutionary there, the only thing to note is my use of Mouse Button 8 on my mouse layer.  The lock layer key in oryx doesn't work as intended with this solution, so instead I've created a shortcut in my window manager (hyprland) which runs the 'lockLayer' function in nanoKontroll when 'Mouse Button 8' is pressed
   `bind = , mouse:279, exec, bash -c "/home/<username>/bin/nanoKontroll lockLayer"`![snapshot_2026-01-25_18-36-58.png](./assets/snapshot_2026-01-25_18-36-58.png)
 
-## acknowledgements
+## Acknowledgements
 
 this is an adaptation of other work, particular thanks goes to -
 * [papa-o-rom](https://www.printables.com/@papaorom_885955) for getting the ball rolling on moonlander trackballs

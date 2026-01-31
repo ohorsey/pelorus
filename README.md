@@ -10,12 +10,13 @@
 
 ## Introduction
 
-I love my Moonlander, but one downside of a split keyboard is that it's no longer practical to type/use the whole keyboard with one hand while using a mouse, and going back and forth from my trackball to the right half of my keyboard was bumming me out.
+I love my Moonlander, but one downside of a split keyboard is that it's no longer practical to type/use the whole keyboard with one hand while using a mouse, and going back and forth from my trackball to the right half of my keyboard was bumming me out. The navigator looked close to what I wanted, but I wasn't SURE I would like the palm or pointer finger positioning the official mounting would give me.
+
+Enter my slant on the ploopy Nano BTU mod. The 3d model is a slightly modified version of Shane Deileys, the innovation here is mostly the script, which doesn't require a Nano, so this script also works for other trackballs or input devices.  I included a sample .service file to run it through systemd, but you can trigger it however you like.
 
 ![PXL_20260125_225050999~2.jpg](./assets/PXL_20260125_225050999~2.jpg)
 ![PXL_20260125_225117174.jpg](./assets/PXL_20260125_225117174.jpg)
 
-Enter my slant on the ploopy Nano BTU mod.  Fair warning, the ZSA integration is specifically for linux and optimised for Fedora/centOS/RHEL/systemd, though it should be deployable anywhere.
 
 ## Bill of Materials
 
@@ -31,40 +32,39 @@ Enter my slant on the ploopy Nano BTU mod.  Fair warning, the ZSA integration is
 ### Hardware
 
 1. Before you begin, read these instructions, the [ZSA teardown instructions](https://www.zsa.io/moonlander/teardown#removing-ribbon-cable) and the [ploopy nano assembly instructions on github](https://github.com/ploopyco/nano-trackball/wiki/Ploopy-Nano-Trackball-Kit-Assembly) in full and make sure you're prepared.
-2. Print the 3d printed parts.  My software and printer (bambu) defaulted to most layers at 0.02, which was thinner than the 0.08 specified by @Shane, but my print came out much smoother.  I also enabled supports, it printed without them, but some of the edges were fraying. The 2 significant modifications I made to the design were to reduce the size of the screw holes for the heat inserts and add 100% infill on the hinge to increase stability, as well as removing a notch to accommodate the hinge of the Moonlanders ribbon cable slot.
+2. Print the 3d printed parts.  My software and printer (bambu) defaulted to most layers at 0.02, which was thinner than the 0.08 specified by @Shane, but my print came out much smoother.  I also enabled supports, it printed without them, but some of the edges were fraying. The 2 significant modifications I made to the design were to reduce the size of the screw holes for the heat inserts and add 100% infill on the hinge to increase stability, as well as removing a notch to accommodate the hinge of the Moonlanders ribbon cable slot.  I don't have any prior 3d printing experience. 
 3. Inspect and clean the prints.
 4. Assemble the ploopy Nano circuit board per the [instructions on github](https://github.com/ploopyco/nano-trackball/wiki/Ploopy-Nano-Trackball-Kit-Assembly) up until step 9.
-5. Now that you've soldered the circuit board together, it's time to insert the M3 inserts into the top housing.  My soldering iron was ~225C into PLA with a printing temp of 220, and it took some experimenting to get it right.  Save any bad prints you have to practice inserts on, the trick is getting them in perpendicular.  If you don't have a press or a lot of tools, my advice is to insert them slow and steady until they're nearly flush, and then to quickly put down the iron and push the edge of the print against a very hard flat surface/bottom of a table. Watch videos on youtube.
+5. Now that you've soldered the circuit board together, it's time to insert the M3 inserts into the top housing.  I used 225 C into PLA with a printing temp of 220, and it took some experimenting to get it right.  Save any bad prints you have to practice inserts on, the trick is getting them in perpendicular.  If you don't have a press on a lot of tools, my advice is to insert them slow and steady until they're nearly flush, and then to quickly put down the iron and push the edge of the print against a very hard flat surface/bottom of a table. Watch videos on youtube.
 6. On step 9 of the ploopy instructions you'd screw the self-tapping screw from ploopy through the hole on the bottom half of the housing and it will tap into the plastic channel on the top half.  That is sufficient for this screw.  You may need to reflash the nano firmware in several steps, which requires exposing the circuit board, so you may want to wait to secure the housing until you are finished.
-7. Remove the Moonlander's thumb cluster and ribbon cable per the [ZSA instructions](https://www.zsa.io/moonlander/teardown#removing-ribbon-cable).  As ZSA notes, the ribbon cable and cluster hinge are delicate, you can break your equipment if you are not delicate. 
+7. Remove the Moonlander's thumb cluster and ribbon cable per the [ZSA instructions](https://www.zsa.io/moonlander/teardown#removing-ribbon-cable).  As ZSA notes, the ribbon cable and cluster hinge are delicate, you can break you equipment if you are not delicate. 
 8. Use the screws from the Moonlander thumb cluster to affix the Nano to your keyboard.  I found it hard to determine whether these screw were M3 or M2.5 using the internet, both of them proved to be M3.  If you were to try and adapt this mod for the left thumb cluster I don't think you could use heat inserts here, due to the reverse rotation on one screw.
-9. Re-assemble your keyboard, plug your nano in and confirm it tracks movement!
-10. It may feel a bit off, if so use QMK firmware to edit this line `#definePOINTING_DEVICE_ROTATION_270`in "qmk_firmware/keyboards/ploopyco/trackball_nano/config.h" and reflash your nano.
-    [QMK intro here](https://docs.qmk.fm/newbs).  Commenting it out/zeroing it is pretty close, I think I landed on 320 but this may be personal preference.  Even if you've never used QMK and are really rusty this should really only take 5-30 minutes.
+9. Re-assemble your keyboard, plug it and you nano in and confirm it tracks movement!
+10. The default firmware orients the trackball towards the plug.  It can only be rotated to 90/180/270/360 and reverting it to zero is close to perfect.  Use QMK to orient it properly - delete this line `#definePOINTING_DEVICE_ROTATION_270`in "qmk_firmware/keyboards/ploopyco/trackball_nano/config.h" and reflash your nano.
+    [QMK intro here](https://docs.qmk.fm/newbs). Even if you've never used QMK and are really rusty this should only take 5-30 minutes depending on your proficiency.
 11. HARDWARE IS COMPLETE!
 
 ### Software
 
-1. These instructions are for systemd machines specifically, but the script is really simple and should be fine wherever.
-2. The script needs to be able to read device input, which is generally restricted.  I decided to add my user to the group which owns the device, input, instead of modifying the device.
-   Verify which group owns your trackball with `sudo ls -al /dev/input/` and assuming it's input run `sudo usermod -aG input <username>` with your username
-3. Download and [install kontroll](https://github.com/zsa/kontroll), preferably to ~/bin/kontroll
-4. Update the .service file and nanoKontroll for your environment per the comments in each file.
-5. Place nanoKontroll in ~/bin and run `sudo chmod +x nanoKontroll`
-6. Place the .service file in ~/.config/systemd/user/ and run 
+1. The script needs to be able to read device input, which is generally restricted.  I decided to add my user to the group which owns the device, input, instead of modifying the device. Part of this was seeing the group addition as not that dangerous, and some might disagree.  The big determination was that I want to track mouse-pointer input from my Moonlander as well, and I'd rather add my user to a low-risk group than downgrade two devices security.  Once I stop iterating I plan on moving this to a service account.
+   Verify which group owns your input devices with `sudo ls -al /dev/input/` and assuming it's input run `sudo usermod -aG input <username>` with your username
+2. Download and [install kontroll](https://github.com/zsa/kontroll), preferably to ~/bin/kontroll
+3. Update the .service file and nanoKontroll for your environment. You need to update the environment variables at the top of the nanoKontroll script, and the script path in the systemd .service file, which has to be an absolute path if you use it. I just added options for a 'gameLayer' and 'gameMouseLayer', but I think the structure of that can be improved.
+4. place nanoKontroll in ~/bin and run `sudo chmod +x nanoKontroll`
+5. Place the .service file in ~/.config/systemd/user/ and run 
    ```
    systemctl --user daemon-reload
    systemctl --user start nano-zsa-integration.service
    ```
-7. You should be good to go, minus one note about the lock layer in the firmware section!!
+6. You should be good to go, minus one note about the lock layer in the firmware section!!
 
 ### Firmware
 
-* You probably already re-flashed the Nano to accommodate the change in rotation.  Other than that, I think you're good, though I have been experimenting with the [wiggleball](https://github.com/pandrr/wiggleball).  I'm not sure I can recommend it though.
-* [This is my current oryx layout](https://configure.zsa.io/moonlander/layouts/RRxy4/latest/6), there's nothing really revolutionary there, the only thing to note is my use of Mouse Button 8 on my mouse layer.  The lock layer key in oryx doesn't work as intended with this solution, so instead I've created a shortcut in my window manager (hyprland) which runs the 'lockLayer' function in nanoKontroll when 'Mouse Button 8' is pressed
+* You probably already re-flashed the Nano to accommodate the change in rotation.  Other than that, I experimented with the [wiggleball](https://github.com/pandrr/wiggleball) but I don't think I can recommend it.  On the other hand, [this comment fron T4CORUN with git links](https://www.reddit.com/r/Trackballs/comments/1pmb1f5/comment/o2ck5ew/) details an incredibly nifty way to flash the nano to read from the computer based lock keys like num/caps/scroll, which I'm still experimenting with.
+* [This is my current oryx layout](https://configure.zsa.io/moonlander/layouts/RRxy4/latest/0), there's nothing really revolutionary there, the only thing to note is my use of Mouse Button 8 on my mouse layer.  The lock layer key in oryx doesn't work as intended with this solution, so instead I've created a shortcut in my window manager (hyprland) which runs the 'lockLayer' function in nanoKontroll when 'Mouse Button 8' is pressed
   `bind = , mouse:279, exec, bash -c "/home/<username>/bin/nanoKontroll lockLayer"`![snapshot_2026-01-25_18-36-58.png](./assets/snapshot_2026-01-25_18-36-58.png)
 
-## Acknowledgements
+## acknowledgements
 
 this is an adaptation of other work, particular thanks goes to -
 * [papa-o-rom](https://www.printables.com/@papaorom_885955) for getting the ball rolling on moonlander trackballs
@@ -73,6 +73,7 @@ this is an adaptation of other work, particular thanks goes to -
 * [nivekmai](https://www.printables.com/model/776160-moonrover-mk2) and [git](https://github.com/nivekmai/qmk_firmware/tree/i2c-arduino-trackball) similarly, nivekmai made some trackballs, but it was the housing they made that was sourced here.
 * [george bryant](https://github.com/gbrnt) last but certainly not least, george bryant made the original btu mod for the ploopy nano without which this would never have come together
 as well as a general thanks to the [zsa](https://www.zsa.io/) and [ploopy](ploopy.co) teams for all the hardware, tools, support. let me know if i missed someone!
+* [T4CORUN](https://www.reddit.com/r/Trackballs/comments/1pmb1f5/comment/o2ck5ew/) I still need to confirm, but this QMK implementation is wild.
 
 ## Future State
 
